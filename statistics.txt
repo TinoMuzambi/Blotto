@@ -1,0 +1,198 @@
+[0, 1, 33, 33, 33, 0, 0, 0, 0, 0]
+Alice won 887 times
+Bob won 113 times
+[0, 1, 33, 33, 33, 0, 0, 0, 0, 0]
+Alice won 870 times
+Bob won 130 times
+[0, 1, 33, 33, 33, 0, 0, 0, 0, 0]
+Alice won 878 times
+Bob won 122 times
+[0, 1, 33, 33, 33, 0, 0, 0, 0, 0]
+Alice won 881 times
+Bob won 119 times
+[0, 1, 33, 33, 33, 0, 0, 0, 0, 0]
+Alice won 883 times
+Bob won 117 times
+[0, 1, 33, 33, 33, 0, 0, 0, 0, 0]
+Alice won 876 times
+Bob won 124 times
+[0, 1, 33, 33, 33, 0, 0, 0, 0, 0]
+Alice won 869 times
+Bob won 131 times
+[0, 1, 33, 33, 33, 0, 0, 0, 0, 0]
+Alice won 868 times
+Bob won 132 times
+[0, 1, 33, 33, 33, 0, 0, 0, 0, 0]
+Alice won 862 times
+Bob won 138 times
+[1, 33, 33, 33, 0, 0, 0, 0, 0, 0]
+Alice won 661 times
+Bob won 339 times
+[1, 33, 33, 33, 0, 0, 0, 0, 0, 0]
+Alice won 690 times
+Bob won 310 times
+[1, 33, 33, 33, 0, 0, 0, 0, 0, 0]
+Alice won 693 times
+Bob won 307 times
+[1, 33, 33, 33, 0, 0, 0, 0, 0, 0]
+Alice won 665 times
+Bob won 335 times
+[1, 33, 33, 33, 0, 0, 0, 0, 0, 0]
+Alice won 665 times
+Bob won 335 times
+[1, 33, 33, 33, 0, 0, 0, 0, 0, 0]
+Alice won 651 times
+Bob won 349 times
+[1, 33, 33, 33, 0, 0, 0, 0, 0, 0]
+Alice won 695 times
+Bob won 305 times
+[33, 33, 34, 0, 0, 0, 0, 0, 0, 0]
+Alice won 176 times
+Bob won 824 times
+[33, 33, 34, 0, 0, 0, 0, 0, 0, 0]
+Alice won 200 times
+Bob won 800 times
+[33, 33, 34, 0, 0, 0, 0, 0, 0, 0]
+Alice won 174 times
+Bob won 826 times
+[33, 33, 34, 0, 0, 0, 0, 0, 0, 0]
+Alice won 174 times
+Bob won 826 times
+[33, 33, 34, 0, 0, 0, 0, 0, 0, 0]
+Alice won 183 times
+Bob won 817 times
+[33, 33, 34, 0, 0, 0, 0, 0, 0, 0]
+Alice won 183 times
+Bob won 817 times
+[33, 33, 34, 0, 0, 0, 0, 0, 0, 0]
+Alice won 185 times
+Bob won 815 times
+[0, 0, 33, 33, 34, 0, 0, 0, 0, 0]
+Alice won 869 times
+Bob won 131 times
+[0, 0, 33, 33, 34, 0, 0, 0, 0, 0]
+Alice won 881 times
+Bob won 119 times
+[0, 0, 33, 33, 34, 0, 0, 0, 0, 0]
+Alice won 865 times
+Bob won 135 times
+[0, 0, 33, 33, 34, 0, 0, 0, 0, 0]
+Alice won 886 times
+Bob won 114 times
+[0, 0, 33, 33, 34, 0, 0, 0, 0, 0]
+Alice won 874 times
+Bob won 126 times
+[0, 0, 33, 33, 34, 0, 0, 0, 0, 0]
+Alice won 849 times
+Bob won 151 times
+[0, 0, 33, 33, 34, 0, 0, 0, 0, 0]
+Alice won 882 times
+Bob won 118 times
+[0, 0, 33, 33, 34, 0, 0, 0, 0, 0]
+Alice won 880 times
+Bob won 120 times
+[0, 0, 33, 33, 34, 0, 0, 0, 0, 0]
+Alice won 867 times
+Bob won 133 times
+[0, 0, 33, 33, 34, 0, 0, 0, 0, 0]
+Alice won 866 times
+Bob won 134 times
+[0, 0, 33, 33, 33, 1, 0, 0, 0, 0]
+Alice won 930 times
+Bob won 70 times
+[0, 0, 33, 33, 33, 1, 0, 0, 0, 0]
+Alice won 937 times
+Bob won 63 times
+[0, 0, 33, 33, 33, 1, 0, 0, 0, 0]
+Alice won 908 times
+Bob won 92 times
+[0, 0, 33, 33, 33, 1, 0, 0, 0, 0]
+Alice won 935 times
+Bob won 65 times
+[0, 0, 33, 33, 33, 1, 0, 0, 0, 0]
+Alice won 922 times
+Bob won 78 times
+[0, 0, 33, 33, 33, 1, 0, 0, 0, 0]
+Alice won 934 times
+Bob won 66 times
+[0, 0, 33, 33, 33, 1, 0, 0, 0, 0]
+Alice won 932 times
+Bob won 68 times
+[0, 0, 33, 33, 33, 1, 0, 0, 0, 0]
+Alice won 925 times
+Bob won 75 times
+[0, 0, 33, 33, 33, 1, 0, 0, 0, 0]
+Alice won 927 times
+Bob won 73 times
+[0, 33, 33, 33, 1, 0, 0, 0, 0, 0]
+Alice won 763 times
+Bob won 237 times
+[0, 33, 33, 33, 1, 0, 0, 0, 0, 0]
+Alice won 747 times
+Bob won 253 times
+[0, 33, 33, 33, 1, 0, 0, 0, 0, 0]
+Alice won 745 times
+Bob won 255 times
+[0, 33, 33, 33, 1, 0, 0, 0, 0, 0]
+Alice won 764 times
+Bob won 236 times
+[0, 33, 33, 33, 1, 0, 0, 0, 0, 0]
+Alice won 722 times
+Bob won 278 times
+[0, 0, 0, 33, 33, 33, 1, 0, 0, 0]
+Alice won 974 times
+Bob won 26 times
+[0, 0, 0, 33, 33, 33, 1, 0, 0, 0]
+Alice won 983 times
+Bob won 17 times
+[0, 0, 0, 33, 33, 33, 1, 0, 0, 0]
+Alice won 984 times
+Bob won 16 times
+[0, 0, 0, 33, 33, 33, 1, 0, 0, 0]
+Alice won 991 times
+Bob won 9 times
+[0, 0, 0, 33, 33, 33, 1, 0, 0, 0]
+Alice won 989 times
+Bob won 11 times
+[0, 0, 0, 33, 33, 33, 1, 0, 0, 0]
+Alice won 988 times
+Bob won 12 times
+[0, 0, 0, 33, 33, 33, 1, 0, 0, 0]
+Alice won 981 times
+Bob won 19 times
+[0, 0, 0, 0, 33, 33, 33, 1, 0, 0]
+Alice won 996 times
+Bob won 4 times
+[0, 0, 0, 0, 33, 33, 33, 1, 0, 0]
+Alice won 994 times
+Bob won 6 times
+[0, 0, 0, 0, 33, 33, 33, 1, 0, 0]
+Alice won 995 times
+Bob won 5 times
+[0, 0, 0, 0, 33, 33, 33, 1, 0, 0]
+Alice won 998 times
+Bob won 2 times
+[0, 0, 0, 0, 33, 33, 33, 1, 0, 0]
+Alice won 999 times
+Bob won 1 times
+[0, 0, 0, 0, 33, 33, 33, 1, 0, 0]
+Alice won 998 times
+Bob won 2 times
+[0, 0, 0, 0, 0, 33, 33, 33, 1, 0]
+Alice won 1000 times
+Bob won 0 times
+[0, 0, 0, 0, 0, 33, 33, 33, 1, 0]
+Alice won 1000 times
+Bob won 0 times
+[0, 0, 0, 0, 0, 33, 33, 33, 1, 0]
+Alice won 1000 times
+Bob won 0 times
+[0, 0, 0, 0, 0, 33, 33, 33, 1, 0]
+Alice won 999 times
+Bob won 1 times
+[0, 0, 0, 0, 0, 33, 33, 33, 1, 0]
+Alice won 998 times
+Bob won 2 times
+[0, 0, 0, 0, 0, 33, 33, 33, 1, 0]
+Alice won 998 times
+Bob won 2 times
