@@ -42,7 +42,7 @@ if __name__=="__main__":
         print()
 
         # Check for three consecutive wins for Alice
-        for i in range(len(alice) - 2):
+        while i in range(len(alice) - 2):
             if alice[i] > bob[i] and alice[i + 1] > bob[i + 1] and alice[i + 2] > bob[i + 2]:
                 print("Alice won\n")
                 alice_wins+=1
@@ -51,12 +51,12 @@ if __name__=="__main__":
 
         # Check for three consecutive wins for Bob only if Alice didn't win.
         if check is False:
-            for i in range(len(alice) - 2):
-                if alice[i] < bob[i] and alice[i + 1] < bob[i + 1] and alice[i + 2] < bob[i + 2]:
-                    print("Bob won\n")
-                    bob_wins += 1
-                    check2 = True
-                    break
+        #     for i in range(len(alice) - 2):
+            if alice[i] < bob[i] and alice[i + 1] < bob[i + 1] and alice[i + 2] < bob[i + 2]:
+                print("Bob won\n")
+                bob_wins += 1
+                check2 = True
+                break
 
         # Initialise score for calculating when no one got three consecutive wins.
         alice_score = 0
