@@ -1,90 +1,123 @@
+"""Run a reproducible Colonel Blotto strategy simulation."""
+
+from __future__ import annotations
+
+import argparse
+import json
 import random
+from collections import Counter
+from collections.abc import Sequence
+from typing import Literal
 
-if __name__=="__main__":
-    # Initialise Alice with our proposed solution
-    alice = [0,0,0,0,0,33,33,33,1,0]
-    bob = []
+BATTLEFIELDS = 10
+TOTAL_UNITS = 100
+DEFAULT_STRATEGY = (0, 0, 0, 0, 0, 33, 33, 33, 1, 0)
+Winner = Literal["strategy", "opponent", "draw"]
 
-    # Initialise number of times alice and bob wins.
-    alice_wins = 0
-    bob_wins = 0
 
-    # Run k iterations
-    for k in range(1000):
-        # Initialise bob's random guess.
-        bob = []
+def validate_allocation(allocation: Sequence[int]) -> tuple[int, ...]:
+    """Return a validated immutable allocation."""
+    if len(allocation) != BATTLEFIELDS:
+        raise ValueError(f"an allocation must contain {BATTLEFIELDS} values")
+    if any(type(value) is not int or value < 0 for value in allocation):
+        raise ValueError("allocation values must be non-negative integers")
+    if sum(allocation) != TOTAL_UNITS:
+        raise ValueError(f"an allocation must use exactly {TOTAL_UNITS} units")
+    return tuple(allocation)
 
-        # Initialise check for if alice won.
-        check = False
-        # Initialise check for if bob won.
-        check2 = False
 
-        # Append 10 random guess.
-        for i in range(10):
-            if sum(bob) < 100:
-                bob.append(random.randint(0, 100 - sum(bob)))
-            else:
-                bob.append(0)
+def random_allocation(rng: random.Random) -> tuple[int, ...]:
+    """Sample uniformly from all non-negative allocations of 100 units."""
+    bars = sorted(rng.sample(range(TOTAL_UNITS + BATTLEFIELDS - 1), BATTLEFIELDS - 1))
+    boundaries = (-1, *bars, TOTAL_UNITS + BATTLEFIELDS - 1)
+    return tuple(boundaries[index + 1] - boundaries[index] - 1 for index in range(BATTLEFIELDS))
 
-        # Print layouts for Bob and Alice.
-        print("{:6}".format("Castle"), end=" ")
-        for i in range(len(alice)):
-            print("{:>3}".format("C" + str(i + 1)), end=" ")
-            # print("C" + str(i + 1), end = " ")
-        print()
-        print("{:6}".format("Alice"), end=" ")
-        for i in range(len(alice)):
-            print("{:>3}".format(alice[i]), end=" ")
-        print()
-        print("{:6}".format("Bob"), end=" ")
-        for i in range(len(bob)):
-            print("{:>3}".format(bob[i]), end=" ")
-        print()
 
-        # Check for three consecutive wins for Alice
-        while i in range(len(alice) - 2):
-            if alice[i] > bob[i] and alice[i + 1] > bob[i + 1] and alice[i + 2] > bob[i + 2]:
-                print("Alice won\n")
-                alice_wins+=1
-                check = True
-                break
+def has_three_consecutive_wins(left: Sequence[int], right: Sequence[int]) -> bool:
+    return any(
+        all(left[index + offset] > right[index + offset] for offset in range(3))
+        for index in range(BATTLEFIELDS - 2)
+    )
 
-        # Check for three consecutive wins for Bob only if Alice didn't win.
-        if check is False:
-        #     for i in range(len(alice) - 2):
-            if alice[i] < bob[i] and alice[i + 1] < bob[i + 1] and alice[i + 2] < bob[i + 2]:
-                print("Bob won\n")
-                bob_wins += 1
-                check2 = True
-                break
 
-        # Initialise score for calculating when no one got three consecutive wins.
-        alice_score = 0
-        bob_score = 0
-        # If alice and bob didn't win
-        if check is False and check2 is False:
-            # Calculate bob's and alice's score.
-            for i in range(len(alice)):
-                if alice[i] > bob[i]:
-                    alice_score += i + 1
-                elif alice[i] < bob[i]:
-                    bob_score += i + 1
+def weighted_score(left: Sequence[int], right: Sequence[int]) -> int:
+    """Score battlefields won, with later battlefields worth more."""
+    return sum(index for index, (left_units, right_units) in enumerate(zip(left, right), 1) if left_units > right_units)
 
-            # Check who wins overall and increment counters for alice and bob accordingly
-            if alice_score > bob_score:
-                alice_wins += 1
-                print("Alice won with " + str(alice_score) + "\n")
-            else:
-                bob_wins += 1
-                print("Bob won with " + str(bob_score) + "\n")
 
-    # Print statistics
-    print("Alice wins", alice_wins)
-    print("Bob wins", bob_wins)
+def determine_winner(strategy: Sequence[int], opponent: Sequence[int]) -> Winner:
+    """Apply the streak rule, then use weighted battlefield points as a tiebreak."""
+    strategy = validate_allocation(strategy)
+    opponent = validate_allocation(opponent)
+    strategy_streak = has_three_consecutive_wins(strategy, opponent)
+    opponent_streak = has_three_consecutive_wins(opponent, strategy)
 
-    # Save statistics to file
-    file =open("statistics.txt", "a")
-    file.writelines(str(alice) + "\n")
-    file.writelines("Alice won " + str(alice_wins) + " times" + "\n")
-    file.writelines("Bob won " + str(bob_wins) + " times" + "\n")
-    file.close()
+    if strategy_streak != opponent_streak:
+        return "strategy" if strategy_streak else "opponent"
+
+    strategy_score = weighted_score(strategy, opponent)
+    opponent_score = weighted_score(opponent, strategy)
+    if strategy_score == opponent_score:
+        return "draw"
+    return "strategy" if strategy_score > opponent_score else "opponent"
+
+
+def simulate(strategy: Sequence[int], runs: int = 10_000, seed: int | None = 42) -> dict[str, int]:
+    """Evaluate a strategy against uniformly sampled valid allocations."""
+    strategy = validate_allocation(strategy)
+    if runs < 1:
+        raise ValueError("runs must be at least 1")
+
+    rng = random.Random(seed)
+    outcomes = Counter(determine_winner(strategy, random_allocation(rng)) for _ in range(runs))
+    return {outcome: outcomes[outcome] for outcome in ("strategy", "opponent", "draw")}
+
+
+def parse_strategy(value: str) -> tuple[int, ...]:
+    try:
+        return validate_allocation(tuple(int(part.strip()) for part in value.split(",")))
+    except ValueError as error:
+        raise argparse.ArgumentTypeError(str(error)) from error
+
+
+def build_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--strategy",
+        type=parse_strategy,
+        default=DEFAULT_STRATEGY,
+        help="ten comma-separated non-negative integers totalling 100",
+    )
+    parser.add_argument("--runs", type=int, default=10_000, help="number of simulated opponents")
+    parser.add_argument("--seed", type=int, default=42, help="random seed for reproducible runs")
+    parser.add_argument("--json", action="store_true", help="emit machine-readable JSON")
+    return parser
+
+
+def main() -> None:
+    arguments = build_parser().parse_args()
+    try:
+        outcomes = simulate(arguments.strategy, arguments.runs, arguments.seed)
+    except ValueError as error:
+        raise SystemExit(str(error)) from error
+
+    payload = {
+        "strategy": list(arguments.strategy),
+        "runs": arguments.runs,
+        "seed": arguments.seed,
+        "outcomes": outcomes,
+        "win_rate": outcomes["strategy"] / arguments.runs,
+    }
+    if arguments.json:
+        print(json.dumps(payload, indent=2))
+        return
+
+    print(f"Strategy: {list(arguments.strategy)}")
+    print(f"Runs: {arguments.runs:,} (seed {arguments.seed})")
+    print(f"Strategy wins: {outcomes['strategy']:,} ({payload['win_rate']:.1%})")
+    print(f"Opponent wins: {outcomes['opponent']:,}")
+    print(f"Draws: {outcomes['draw']:,}")
+
+
+if __name__ == "__main__":
+    main()

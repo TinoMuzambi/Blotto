@@ -1,0 +1,10 @@
+[project]
+name = "blotto-simulator"
+version = "1.0.0"
+description = "A reproducible Colonel Blotto strategy simulator"
+requires-python = ">=3.12"
+license = "MIT"
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
